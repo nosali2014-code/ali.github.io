@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Nosrati Market | فروش اقساطی لوازم خانگی</title>
+<style>
+:root{--bg:#f4f6fa;--ink:#182235;--muted:#697586;--brand:#123d32;--accent:#d6a84f;--card:#fff;--line:#e6eaf0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.8}
+header{background:linear-gradient(135deg,#102b26,#1d5142);color:#fff;padding:24px 16px 30px}
+.wrap{max-width:1060px;margin:auto;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:22px;font-weight:800;letter-spacing:.2px}.tag{color:#e8d6aa;font-size:13px}
+.hero{padding:30px 0 8px}.hero h1{font-size:clamp(24px,5vw,38px);line-height:1.5;margin:0 0 8px}.hero p{margin:0;color:#e3eee9}
+.pill{display:inline-block;background:#ffffff1c;border:1px solid #ffffff38;border-radius:30px;padding:5px 12px;margin-top:15px;font-size:13px}
+main{padding:26px 0 50px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}.section-head h2{margin:0;font-size:22px}.hint{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 5px 20px #15243a0a}
+.photo{height:175px;background:linear-gradient(135deg,#e8edf2,#f8fafc);display:flex;align-items:center;justify-content:center;color:#8793a2;font-size:14px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:contain}
+.info{padding:15px}.brand{font-size:12px;color:var(--brand);font-weight:700}.info h3{font-size:17px;margin:3px 0 8px}.desc{font-size:13px;color:var(--muted);min-height:44px}
+.price{font-size:14px;margin-top:10px}.monthly{font-weight:800;color:var(--brand);font-size:17px}.small{font-size:12px;color:var(--muted)}
+.btn{border:0;background:var(--brand);color:white;border-radius:11px;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
+.btn:disabled{opacity:.55;cursor:wait}
+.empty,.status{background:white;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted)}
+.formbox{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.formbox h2{margin:0 0 4px}.formbox p{margin:0 0 14px;color:var(--muted);font-size:13px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
+input{width:100%;padding:12px;border:1px solid #d8dee8;border-radius:10px;font:inherit;direction:rtl}
+input:focus{outline:2px solid #c8ddcf;border-color:#4b8068}
+.selected{font-size:13px;color:var(--brand);font-weight:700;margin-top:10px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+#toast{margin-top:12px;font-size:13px}
+@media(max-width:520px){.top{align-items:flex-start;flex-direction:column}.hero{padding-top:22px}.photo{height:155px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <div class="top"><div class="logo">Nosrati Market</div><div class="tag">خرید آسان لوازم خانگی</div></div>
+  <div class="hero">
+   <h1>لوازم خانه، با شرایط خرید آسان</h1>
+   <p>محصولات را ببینید، شرایط را بررسی کنید و درخواست خریدتان را آنلاین ثبت کنید.</p>
+   <span class="pill">ثبت درخواست خرید • پاسخ‌گویی مستقیم</span>
+  </div>
+ </div>
+</header>
+<main class="wrap">
+ <div class="section-head"><h2>محصولات فروشگاه</h2><span class="hint">قیمت و شرایط هر کالا در کارت آن نمایش داده می‌شود</span></div>
+ <div id="products" class="grid"><div class="empty">در حال دریافت محصولات...</div></div>
+
+ <section class="formbox" id="request">
+  <h2>ثبت درخواست خرید</h2>
+  <p>نام و شماره تماس را وارد کنید تا درخواست شما برای فروشگاه ارسال شود.</p>
+  <form id="orderForm">
+   <div class="fields">
+    <div><label for="first">نام</label><input id="first" name="first_name" required maxlength="60" placeholder="نام شما"></div>
+    <div><label for="last">نام خانوادگی</label><input id="last" name="last_name" required maxlength="60" placeholder="نام خانوادگی"></div>
+    <div><label for="phone">شماره موبایل</label><input id="phone" name="phone" required inputmode="numeric" maxlength="11" pattern="09[0-9]{9}" placeholder="09xxxxxxxxx"></div>
+   </div>
+   <div class="selected" id="selectedProduct">هنوز محصولی انتخاب نشده است؛ می‌توانید از کارت کالاها انتخاب کنید.</div>
+   <button class="btn" id="submitBtn" type="submit">ارسال درخواست خرید</button>
+   <div id="toast" role="status"></div>
+  </form>
+ </section>
+</main>
+<footer>© Nosrati Market</footer>
+<script>
+const SUPABASE_URL = "https://ycuulnbfevmdeiryedbt.supabase.co";
+const SUPABASE_KEY = "sb_publishable_X8MygMaMpDyGFUQkm2omUw_ASi-7HFH";
+const PRODUCTS_URL = `${SUPABASE_URL}/rest/v1/products?select=id,title,brand,model,price_toman,monthly_payment_toman,installment_months,image_url,description&is_active=eq.true&order=id.desc`;
+const ORDER_URL = `${SUPABASE_URL}/functions/v1/send-order`;
+let selectedId = null;
+let selectedTitle = "";
+
+const toman = n => (Number(n||0)).toLocaleString("fa-IR") + " تومان";
+const headers = {"apikey":SUPABASE_KEY,"Authorization":`Bearer ${SUPABASE_KEY}`};
+
+function chooseProduct(p){
+ selectedId = p.id; selectedTitle = p.title || "محصول انتخابی";
+ document.getElementById("selectedProduct").textContent = "محصول انتخاب‌شده: " + selectedTitle;
+ document.getElementById("request").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderProducts(items){
+ const root=document.getElementById("products");
+ if(!items.length){root.innerHTML='<div class="empty">فعلاً محصول فعالی برای نمایش ثبت نشده است.</div>';return;}
+ root.innerHTML="";
+ items.forEach(p=>{
+  const card=document.createElement("article");card.className="card";
+  const photo=document.createElement("div");photo.className="photo";
+  if(p.image_url){const img=document.createElement("img");img.src=p.image_url;img.alt=p.title||"تصویر محصول";img.loading="lazy";img.onerror=()=>{photo.textContent="تصویر محصول";};photo.appendChild(img);}
+  else photo.textContent="تصویر محصول";
+  const info=document.createElement("div");info.className="info";
+  const brand=document.createElement("div");brand.className="brand";brand.textContent=[p.brand,p.model].filter(Boolean).join(" • ");
+  const title=document.createElement("h3");title.textContent=p.title||"محصول";
+  const desc=document.createElement("div");desc.className="desc";desc.textContent=p.description||"برای دریافت اطلاعات بیشتر درخواست خرید ثبت کنید.";
+  const price=document.createElement("div");price.className="price";price.textContent="قیمت: "+toman(p.price_toman);
+  const monthly=document.createElement("div");monthly.className="monthly";monthly.textContent=toman(p.monthly_payment_toman)+" / ماه";
+  const months=document.createElement("div");months.className="small";months.textContent="مدت اقساط: "+(p.installment_months||24).toLocaleString("fa-IR")+" ماه";
+  const btn=document.createElement("button");btn.className="btn";btn.type="button";btn.textContent="ثبت درخواست این محصول";btn.addEventListener("click",()=>chooseProduct(p));
+  info.append(brand,title,desc,price,monthly,months,btn);card.append(photo,info);root.appendChild(card);
+ });
+}
+async function loadProducts(){
+ try{
+  const r=await fetch(PRODUCTS_URL,{headers});
+  if(!r.ok)throw new Error("HTTP "+r.status);
+  renderProducts(await r.json());
+ }catch(e){
+  document.getElementById("products").innerHTML='<div class="empty">دریافت محصولات انجام نشد. اتصال و دسترسی خواندن جدول products باید بررسی شود.</div>';
+ }
+}
+document.getElementById("orderForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const first_name=document.getElementById("first").value.trim();
+ const last_name=document.getElementById("last").value.trim();
+ const phone=document.getElementById("phone").value.trim();
+ const toast=document.getElementById("toast"),btn=document.getElementById("submitBtn");
+ if(!/^09\d{9}$/.test(phone)){toast.textContent="شماره موبایل باید با 09 شروع شود و ۱۱ رقم باشد.";return;}
+ btn.disabled=true;btn.textContent="در حال ارسال...";
+ toast.textContent="";
+ try{
+  const payload={first_name,last_name,phone};
+  if(selectedId!==null)payload.product_id=selectedId;
+  const r=await fetch(ORDER_URL,{method:"POST",headers:{...headers,"Content-Type":"application/json"},body:JSON.stringify(payload)});
+  const data=await r.json();
+  if(!r.ok||!data.success||data.telegram_sent!==true)throw new Error(data.telegram_error||data.error||"ارسال درخواست ناموفق بود.");
+  toast.textContent="درخواست شما با موفقیت ثبت شد. به‌زودی با شما تماس می‌گیریم.";
+  e.target.reset();selectedId=null;selectedTitle="";
+  document.getElementById("selectedProduct").textContent="هنوز محصولی انتخاب نشده است.";
+ }catch(err){toast.textContent="ارسال انجام نشد: "+err.message;}
+ finally{btn.disabled=false;btn.textContent="ارسال درخواست خرید";}
+});
+loadProducts();
+</script>
+</body>
+</html>
